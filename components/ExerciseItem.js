@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useState, useEffect } from "react";
 import FilterButtons from "./FilterButtons";
 
-function ExerciseItem({ name, type, equipment, difficulty, instructions, onPress }) {
+function ExerciseItem({ name, difficulty, onPress }) {
 
     return (
         <View style={styles.exerciseContainer}>
