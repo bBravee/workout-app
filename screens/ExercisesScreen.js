@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 import ExerciseItem from "../components/ExerciseItem";
+import SmallTitle from "../components/ExerciseDetail/SmallTitle";
 
 const filters = ['all', 'intermediate', 'beginner', 'expert'];
 
@@ -11,19 +12,18 @@ function ExercisesScreen({ route, navigation }) {
     const bodyPartName = route.params.bodyPartName;
 
     const [data, setData] = useState([]);
-    // const [filteredData, setFilteredData] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [extraData, setExtraData] = useState(null)
 
     useEffect(() => {
         axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${bodyPartName}`, {
             headers: {
-                'X-Api-Key': 'ApiKey'
+                'X-Api-Key': 'API_KEY_HERE'
             }
         })
             .then(response => {
                 const repeated = response.data.findIndex(item => item.name === "Deadlift with Bands");
-                
+
                 // Jeśli nie powtarza się 
                 if (repeated === -1) {
                     setData(response.data);
@@ -40,6 +40,22 @@ function ExercisesScreen({ route, navigation }) {
         console.log('axios call');
     }, []);
 
+    function renderExerciseItem({ item }) {
+        function itemPressHandler() {
+            navigation.navigate('ExerciseDetails', {
+                exercise: item
+            });
+        }
+
+        return (
+            <ExerciseItem
+                name={item.name}
+                difficulty={item.difficulty}
+                onPress={itemPressHandler}
+            />
+        )
+    }
+   
     // Ustawia filtr po naciśnięciu
     const handleFilterPress = filter => {
         setSelectedFilter(filter);
@@ -49,10 +65,6 @@ function ExercisesScreen({ route, navigation }) {
     const filteredData = !selectedFilter ? data : selectedFilter === 'all' ? data : data.filter(item => item.difficulty === selectedFilter);
 
     const keyExtractor = (item) => `${item.name}_${selectedFilter}`
-
-    // Usuwanie duplikatu ćwiczenia
-    // const repeatedIdx = data.findIndex((item) => item.name === "Deadlift with Bands"); // Index powtórzonego ćwiczenia w datasecie
-    // data.splice(repeatedIdx, 1);
 
     return (
         <View style={styles.listContainer}>
@@ -64,18 +76,13 @@ function ExercisesScreen({ route, navigation }) {
                         onPress={() => handleFilterPress(filter)}
                         style={[styles.button, selectedFilter === filter ? styles.buttonActive : null]}
                     >
-                        <Text style={styles.buttonText}>{filter}</Text>
+                        <SmallTitle style={{color: 'white', marginHorizontal: null}}>{filter}</SmallTitle>
                     </TouchableOpacity>
                 ))}
             </View>
             <FlatList
                 data={filteredData}
-                renderItem={({ item }) =>
-                    <ExerciseItem
-                        name={item.name}
-                        difficulty={item.difficulty}
-                        onPress={() => console.log(item.name + "pressed")}
-                    />}
+                renderItem={renderExerciseItem}
                 keyExtractor={keyExtractor}
                 extraData={extraData}
             />
@@ -99,22 +106,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'red'
     },
     buttonActive: {
-        backgroundColor: 'red'
+        backgroundColor: '#646060',
     },
     button: {
         flex: 1,
-        backgroundColor: '#2aca60',
+        backgroundColor: '#252424',
         borderRadius: 8,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 8,
-        marginVertical: 8
+        marginVertical: 8,
     },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold'
-    }
 })
 
 

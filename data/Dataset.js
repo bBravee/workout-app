@@ -6,14 +6,14 @@ export const BODYPARTS = [
     new BodyPart(
         'bp0',
         'Chest',
-        'https://www.kingofthegym.com/wp-content/uploads/2012/11/bench-press-tips_jacked-guy-benching.jpg',
+        'https://images.unsplash.com/photo-1652363722833-509b3aac287b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         null
     ),
 
     new BodyPart(
         'bp1',
         'Back',
-        'https://marathonhandbook.com/wp-content/uploads/2022/09/How-Many-Pull-Ups-Should-I-Be-Able-To-Do.webp',
+        'https://images.unsplash.com/photo-1597347316205-36f6c451902a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHVsbCUyMHVwc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
         [
             { id: 'b1', name: 'Lats', imgUrl: 'https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2020/05/Pull-Ups-Exercise-770x500.jpg' },
             { id: 'b2', name: 'Lower_Back', imgUrl: 'https://www.thetrendspotter.net/wp-content/uploads/2020/08/Lower-Back-Exercises.jpg' },
@@ -23,31 +23,31 @@ export const BODYPARTS = [
 
     new BodyPart(
         'bp2',
-        'Abs',
-        'https://www.bodybuilding.com/images/2018/april/the-best-ab-workout-for-a-six-pack-header-830x467.jpg',
+        'Abdominals',
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         null
     ),
 
     new BodyPart(
         'bp3',
         'Arms',
-        'https://www.bodybuilding.com/images/2019/february/arm-training-for-women-header-830x467.jpg',
+        'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         [
             { id: 'a1', name: 'Biceps', imgUrl: 'https://www.bodybuilding.com/fun/images/2015/10-laws-of-biceps-training-facebook-960x540.jpg' },
             { id: 'a2', name: 'Triceps', imgUrl: 'https://barbend.com/wp-content/uploads/2020/05/Triceps-Training.jpg' },
             { id: 'a3', name: 'Forearm', imgUrl: 'http://barbend.com/wp-content/uploads/2021/10/BarBend-Article-Image-760-x-427-35.jpg' }
         ]
     ),
-    new BodyPart(
-        'bp4',
-        'Shoulders',
-        'https://www.bodybuilding.com/images/2018/june/the-3-move-shoulder-builder-header-muscletech-830x467.jpg',
-        null
-    ),
+    // new BodyPart(
+    //     'bp4',
+    //     'Shoulders',
+    //     'https://www.bodybuilding.com/images/2018/june/the-3-move-shoulder-builder-header-muscletech-830x467.jpg',
+    //     null
+    // ),
     new BodyPart(
         'b5',
         'Legs',
-        'https://cathe.com/wp-content/uploads/2019/07/shutterstock_1043285815.jpg',
+        'https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
         [
             { id: 'l1', name: 'Glutes', imgUrl: 'https://breakingmuscle.com/wp-content/uploads/2022/10/Shutterstock_2212080951.jpg' },
             { id: 'l2', name: 'Hamstrings', imgUrl: 'http://www.kuvvetvekondisyon.com/wp-content/uploads/2014/03/Leg-curl.jpg' },

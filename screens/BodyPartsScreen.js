@@ -10,7 +10,7 @@ function BodyPartsScreen({ navigation }) {
     // Funkcja tworzy onPressHandler który przenosi na inny ekran i zwraca komponent z wypełnionymi propsami które pobiera z itemData przekazanego przez FlatList
     function renderBoodyPartItem(itemData) {
         function itemPressHandler() { // Funkcja nawigująca
-            if (itemData.item.name === 'Chest' || itemData.item.name === 'Abs') {
+            if (itemData.item.name === 'Chest' || itemData.item.name === 'Abdominals') {
                 navigation.navigate('Exercises', {
                     bodyPartName: itemData.item.name
                 });

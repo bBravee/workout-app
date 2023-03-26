@@ -1,6 +1,6 @@
 import { FlatList, Text, View, StyleSheet, BackHandler } from "react-native";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import { BODYPARTS } from "../data/Dataset";
 import BodyPartItem from "../components/BodyPartItem";
@@ -12,6 +12,12 @@ function PartDivisionScreen({ route, navigation }) {
     const partDivision = BODYPARTS.find((bpItem) => {
         return bpItem.name === bodyPartName;
     });
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: bodyPartName,
+        });
+    }, [bodyPartName, navigation])
 
     function renderBodyPartDivision(itemData) {
         function itemPressHandler() {

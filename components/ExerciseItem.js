@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
-import { useState, useEffect } from "react";
-import FilterButtons from "./FilterButtons";
+import SmallTitle from "./ExerciseDetail/SmallTitle";
 
 function ExerciseItem({ name, difficulty, onPress }) {
 
@@ -13,11 +12,8 @@ function ExerciseItem({ name, difficulty, onPress }) {
                     pressed ? styles.buttonPressed : null]}
                 onPress={onPress}>
                 <View style={styles.innerContainer}>
-                    <Text style={styles.exerciseText}> {name} </Text>
-                    {/* <Text>Type: {type} </Text> */}
-                    {/* <Text>Equipment: {equipment} </Text> */}
-                    <Text style={[styles.exerciseText, { color: difficulty === 'beginner' ? 'green' : difficulty === 'intermediate' ? 'yellow' : 'red' }]}> {difficulty} </Text>
-                    {/* <Text>Instructions: {instructions} </Text> */}
+                    <SmallTitle style={{ color: 'white', maxWidth: '80%'}}>{name}</SmallTitle>
+                    <SmallTitle style={{ color: difficulty === 'beginner' ? 'green' : difficulty === 'intermediate' ? 'yellow' : 'red' }}>{difficulty}</SmallTitle>
                 </View>
             </Pressable>
         </View>
@@ -30,8 +26,9 @@ export default ExerciseItem;
 const styles = StyleSheet.create({
     exerciseContainer: {
         flex: 1,
+        alignSelf: 'stretch',
         borderRadius: 8,
-        height: 60,
+        minHeight: 60,
         // paddingVertical: 18,
         // paddingHorizontal: 8,
         margin: 18,
@@ -52,9 +49,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    exerciseText: {
-        fontWeight: 'bold',
-        color: 'white',
-        marginHorizontal: 12
-    }
 })
