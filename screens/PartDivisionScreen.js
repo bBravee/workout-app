@@ -1,4 +1,4 @@
-import { FlatList, Text, View, StyleSheet, BackHandler } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import { useLayoutEffect } from "react";
 

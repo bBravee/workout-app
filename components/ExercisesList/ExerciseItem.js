@@ -1,8 +1,13 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 
-import SmallTitle from "./ExerciseDetail/SmallTitle";
+import SmallTitle from "../ExerciseDetail/SmallTitle";
 
-function ExerciseItem({ name, difficulty, onPress }) {
+function ExerciseItem({ item, name, difficulty, navigation }) {
+    const onPressHandler = () => {
+        navigation.navigate('ExerciseDetails', {
+            exercise: item
+        });
+    }
 
     return (
         <View style={styles.exerciseContainer}>
@@ -10,7 +15,7 @@ function ExerciseItem({ name, difficulty, onPress }) {
                 style={({ pressed }) => [
                     styles.button,
                     pressed ? styles.buttonPressed : null]}
-                onPress={onPress}>
+                onPress={onPressHandler}>
                 <View style={styles.innerContainer}>
                     <SmallTitle style={{ color: 'white', maxWidth: '80%'}}>{name}</SmallTitle>
                     <SmallTitle style={{ color: difficulty === 'beginner' ? 'green' : difficulty === 'intermediate' ? 'yellow' : 'red' }}>{difficulty}</SmallTitle>

@@ -3,8 +3,9 @@ import { FlatList, StyleSheet, View, TouchableOpacity, Text } from "react-native
 import { useState, useEffect } from "react";
 
 import axios from "axios";
-import ExerciseItem from "../components/ExerciseItem";
+import ExerciseItem from "../components/ExercisesList/ExerciseItem";
 import SmallTitle from "../components/ExerciseDetail/SmallTitle";
+import ExerciseList from "../components/ExercisesList/ExerciseList";
 
 const filters = ['all', 'intermediate', 'beginner', 'expert'];
 
@@ -40,22 +41,6 @@ function ExercisesScreen({ route, navigation }) {
         console.log('axios call');
     }, []);
 
-    function renderExerciseItem({ item }) {
-        function itemPressHandler() {
-            navigation.navigate('ExerciseDetails', {
-                exercise: item
-            });
-        }
-
-        return (
-            <ExerciseItem
-                name={item.name}
-                difficulty={item.difficulty}
-                onPress={itemPressHandler}
-            />
-        )
-    }
-   
     // Ustawia filtr po naciśnięciu
     const handleFilterPress = filter => {
         setSelectedFilter(filter);
@@ -64,7 +49,7 @@ function ExercisesScreen({ route, navigation }) {
 
     const filteredData = !selectedFilter ? data : selectedFilter === 'all' ? data : data.filter(item => item.difficulty === selectedFilter);
 
-    const keyExtractor = (item) => `${item.name}_${selectedFilter}`
+    // const keyExtractor = (item) => `${item.name}_${selectedFilter}`
 
     return (
         <View style={styles.listContainer}>
@@ -80,12 +65,7 @@ function ExercisesScreen({ route, navigation }) {
                     </TouchableOpacity>
                 ))}
             </View>
-            <FlatList
-                data={filteredData}
-                renderItem={renderExerciseItem}
-                keyExtractor={keyExtractor}
-                extraData={extraData}
-            />
+            <ExerciseList navigation={navigation} items={filteredData} />
         </View>
     );
 };
