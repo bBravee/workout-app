@@ -3,6 +3,7 @@ import BodyPartItem from "../components/BodyPartItem";
 import { View, FlatList, StyleSheet } from "react-native";
 
 import { BODYPARTS } from "../data/Dataset";
+import Container from "../components/Container";
 
 
 
@@ -23,7 +24,6 @@ function BodyPartsScreen({ navigation }) {
 
         // Usuwanie margina na dole tylko z ostatniego elementu listy
         
-        
         const isLastItem = itemData.index === BODYPARTS.length - 1; // Sprawdza czy element jest ostatnim elementem wygernerowanym przez listę
         console.log("BPS: " + isLastItem);
         const itemStyle = isLastItem ? styles.bodyPartLastItem : styles.bodyPartItem; // Jeśli element jest ostatni to nadaje mu styl dla ostatniego elementu
@@ -39,23 +39,20 @@ function BodyPartsScreen({ navigation }) {
     };
 
     return (
-        <View style={styles.listContainer}>
+        <Container>
             <FlatList
                 data={BODYPARTS}
                 keyExtractor={(item) => item.id}
                 renderItem={renderBoodyPartItem}
                 numColumns={1}
             />
-        </View>
+        </Container>
     );
 }
 
 export default BodyPartsScreen;
 
 const styles = StyleSheet.create({
-    listContainer: {
-        flex: 1,
-    },
     bodyPartItem: {
         flex: 1,
         marginBottom: 4,

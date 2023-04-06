@@ -108,7 +108,7 @@ function ExerciseDetailsScreen({ route, navigation }) {
     return (
         <ScrollView onLayout={handleViewLayout} ref={scrollViewRef} contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.imageContainer}>
-                <ImageBackground resizeMode="cover" source={{ uri: 'https://images.unsplash.com/photo-1580261450046-d0a30080dc9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2018&q=80' }} style={styles.imageBackground}>
+                <ImageBackground resizeMode="cover" source={require('../assets/gym.jpg')} style={styles.imageBackground}>
                     <View style={styles.titleContainer}>
                         <Text style={styles.imageTitle}>{exercise.name}</Text>
                         <Pressable onPress={handleButtonClick} onPressIn={handlePressIn} onPressOut={handlePressOut} style={styles.scrollButton}>

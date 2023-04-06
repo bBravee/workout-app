@@ -1,11 +1,9 @@
-import { Button, Text } from "react-native"
-import { ReactReduxContext, useSelector } from "react-redux";
+import { StyleSheet, Text, View } from "react-native"
+import { useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import { FlatList } from "react-native-gesture-handler";
-import ExerciseItem from "../components/ExercisesList/ExerciseItem";
 import ExerciseList from "../components/ExercisesList/ExerciseList";
 
 
@@ -26,7 +24,7 @@ function FavoritesScreen({ navigation }) {
         for (const item of favoriteExercisesRdx) {
             axios.get(`https://api.api-ninjas.com/v1/exercises?name=${item}`, {
                 headers: {
-                    'X-Api-Key': 'API_KEY_HERE'
+                    'X-Api-Key': 'ZFB0/BRvKlVU5s8pxVRUXA==BIyF6R2zHd8mFyDJ'
                 }
             })
                 .then(response => {
@@ -46,6 +44,14 @@ function FavoritesScreen({ navigation }) {
         }
     }, [favoriteExercisesRdx]);
 
+    if (favoriteExercisesRdx.length === 0) {
+        return (
+            <View style={styles.messageContainer}>
+                <Text style={styles.message}>You don't have favorite exercises yet.</Text>
+            </View>
+        )
+    }
+
     return (
         <>
             <ExerciseList navigation={navigation} items={favExercises} />
@@ -54,3 +60,15 @@ function FavoritesScreen({ navigation }) {
 }
 
 export default FavoritesScreen;
+
+const styles = StyleSheet.create({
+    messageContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    message: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
+})

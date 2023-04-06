@@ -19,7 +19,7 @@ function ExercisesScreen({ route, navigation }) {
     useEffect(() => {
         axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${bodyPartName}`, {
             headers: {
-                'X-Api-Key': 'API_KEY_HERE'
+                'X-Api-Key': 'ZFB0/BRvKlVU5s8pxVRUXA==BIyF6R2zHd8mFyDJ'
             }
         })
             .then(response => {
