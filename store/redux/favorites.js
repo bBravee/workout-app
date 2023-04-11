@@ -1,5 +1,3 @@
-// Slice defining - redux toolkit feature to define some states, data and actions to change that data
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const favoritesSlice = createSlice({
@@ -8,7 +6,6 @@ const favoritesSlice = createSlice({
         names: []
     },
     reducers: {
-        // Otrzymują ostatni stan jako parametr
         addFavorite: (state, action) => {
             state.names.push(action.payload.name );
         },

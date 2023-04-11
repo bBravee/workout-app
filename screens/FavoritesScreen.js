@@ -17,14 +17,13 @@ function FavoritesScreen({ navigation }) {
             setFavExercises([]);
         }
 
-        console.log("Favorites axios call");
         const newData = [];
         let numResponsesReceived = 0;
 
         for (const item of favoriteExercisesRdx) {
             axios.get(`https://api.api-ninjas.com/v1/exercises?name=${item}`, {
                 headers: {
-                    'X-Api-Key': 'ZFB0/BRvKlVU5s8pxVRUXA==BIyF6R2zHd8mFyDJ'
+                    'X-Api-Key': 'API_KEY'
                 }
             })
                 .then(response => {

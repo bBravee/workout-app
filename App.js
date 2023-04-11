@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Ionicons } from '@expo/vector-icons'
@@ -18,17 +17,7 @@ import { store } from './store/redux/store';
 
 export default function App() {
   const Stack = createStackNavigator();
-  // const Drawer = createDrawerNavigator();
   const BottomTabs = createBottomTabNavigator();
-
-  // function DrawerNavigator() {
-  //   return (
-  //     <Drawer.Navigator>
-  //       <Drawer.Screen name="BodyParts" component={BodyPartsScreen} />
-  //       <Drawer.Screen name="Favorites" component={FavoritesScreen} />
-  //     </Drawer.Navigator>
-  //   )
-  // }
 
   function StackNavigator() {
     return (
@@ -93,12 +82,3 @@ export default function App() {
     </>
   );
 }
-
-
-// BodyPartsScreen - podział na partie ciała
-// ExercisesScreen - ćwiczenia przypisane do danej partii ciała
-// ExerciseDetailsScreen - szczegóły danego ćwiczenia
-
-
-// Do zrobienia
-// Zrobić sortowanie listy z ćwiczeniami względem trudności

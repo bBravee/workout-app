@@ -1,9 +1,8 @@
-import { FlatList, StyleSheet, View, TouchableOpacity, Text } from "react-native"
+import { StyleSheet, View, TouchableOpacity} from "react-native"
 
 import { useState, useEffect } from "react";
 
 import axios from "axios";
-import ExerciseItem from "../components/ExercisesList/ExerciseItem";
 import SmallTitle from "../components/ExerciseDetail/SmallTitle";
 import ExerciseList from "../components/ExercisesList/ExerciseList";
 
@@ -14,42 +13,34 @@ function ExercisesScreen({ route, navigation }) {
 
     const [data, setData] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const [extraData, setExtraData] = useState(null)
 
     useEffect(() => {
         axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${bodyPartName}`, {
             headers: {
-                'X-Api-Key': 'ZFB0/BRvKlVU5s8pxVRUXA==BIyF6R2zHd8mFyDJ'
+                'X-Api-Key': 'API_KEY'
             }
         })
             .then(response => {
                 const repeated = response.data.findIndex(item => item.name === "Deadlift with Bands");
 
-                // Jeśli nie powtarza się 
                 if (repeated === -1) {
                     setData(response.data);
                 } else {
-                    // Usuwanie duplikatu ćwiczenia "Deadlift with Bands"
                     const uniqueArray = response.data.filter((element, index, self) =>
-                        index === self.findIndex((o) => o.name === element.name && o.equipment === element.equipment) // Duplikaty występują dwa razy i mają inne indeksy dlatego są odfiltrowywane
+                        index === self.findIndex((o) => o.name === element.name && o.equipment === element.equipment)
                     );
 
                     setData(uniqueArray);
                 }
             })
             .catch(error => console.log(error));
-        console.log('axios call');
     }, []);
 
-    // Ustawia filtr po naciśnięciu
     const handleFilterPress = filter => {
         setSelectedFilter(filter);
-        setExtraData(filter);
     };
 
     const filteredData = !selectedFilter ? data : selectedFilter === 'all' ? data : data.filter(item => item.difficulty === selectedFilter);
-
-    // const keyExtractor = (item) => `${item.name}_${selectedFilter}`
 
     return (
         <View style={styles.listContainer}>
@@ -57,7 +48,6 @@ function ExercisesScreen({ route, navigation }) {
                 {filters.map(filter => (
                     <TouchableOpacity
                         key={filter}
-                        title={filter}
                         onPress={() => handleFilterPress(filter)}
                         style={[styles.button, selectedFilter === filter ? styles.buttonActive : null]}
                     >

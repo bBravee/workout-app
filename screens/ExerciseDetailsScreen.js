@@ -1,9 +1,7 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
-import { Image, Button, Text, ScrollView, View, StyleSheet, ImageBackground, Pressable, Animated } from "react-native";
+import { Text, ScrollView, View, StyleSheet, ImageBackground, Pressable, Animated } from "react-native";
 import { Dimensions } from 'react-native';
-import { Easing } from 'react-native';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
 import SmallTitle from "../components/ExerciseDetail/SmallTitle";
@@ -12,23 +10,19 @@ import FavButton from "../components/FavButton";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../store/redux/favorites";
 
-// Rozmiary okna i obrazu
-const { width, height } = Dimensions.get('window');
-const imageHeight = height / 1.3;
-const circleWidth = (width / 3) - 20;
 
+const { height } = Dimensions.get('window');
+const imageHeight = height / 1.3;
 
 function ExerciseDetailsScreen({ route, navigation }) {
     const exercise = route.params.exercise;
 
-    // Przypisanie stanu z Reduxa
     const favoriteExercises = useSelector((state) => state.favoriteExercises.names);
     const dispatch = useDispatch();
 
     const exerciseIsFavorite = favoriteExercises.includes(exercise.name);
 
     function changeFavoriteStatus() {
-        console.log("clicked");
         if (exerciseIsFavorite) {
             dispatch(removeFavorite({ name: exercise.name }));
         } else {
@@ -36,22 +30,18 @@ function ExerciseDetailsScreen({ route, navigation }) {
         }
     }
 
-    // Ikona dodawania do ulubionych
     useLayoutEffect(() => {
         navigation.setOptions({
             title: exercise.name,
             headerRight: () => {
                 return <FavButton
-                    icon={exerciseIsFavorite ? 'heart' : 'heart-outline'} 
-                    color="white" 
+                    icon={exerciseIsFavorite ? 'heart' : 'heart-outline'}
+                    color="white"
                     onPress={changeFavoriteStatus} />
             }
         });
     }, [exercise, navigation, changeFavoriteStatus]);
 
-
-
-    // Animacja
     const animation = useRef(new Animated.Value(0)).current;
 
     const handlePressIn = () => {
@@ -85,7 +75,6 @@ function ExerciseDetailsScreen({ route, navigation }) {
         ],
     };
 
-    // Scroll
     const scrollViewRef = useRef();
 
     const [viewLayout, setViewLayout] = useState(null);
@@ -99,7 +88,7 @@ function ExerciseDetailsScreen({ route, navigation }) {
     };
 
     const handleViewLayout = (e) => {
-        const { y } = e.nativeEvent.layout; // To to samo: const y = e.nativeEvent.layout.y;
+        const { y } = e.nativeEvent.layout;
         if (viewLayout === null) {
             setViewLayout({ y });
         }
@@ -122,17 +111,18 @@ function ExerciseDetailsScreen({ route, navigation }) {
             <View style={styles.textContainer}>
                 <View style={styles.infoTabsContainer}>
                     <View style={styles.infoTab}>
-                        <Text style={styles.infoTabText}>{exercise.muscle}</Text>
+                        <SmallTitle style={{ fontSize: 14, paddingVertical: 8, marginHorizontal: null }}>Type</SmallTitle>
+                        <Text style={styles.infoTabText}>{exercise.type}</Text>
                     </View>
                     <View style={styles.infoTab}>
-                        <Text style={styles.infoTabText}>{exercise.difficulty}</Text>
-                    </View>
-                    <View style={styles.infoTab}>
+                        <SmallTitle style={{ fontSize: 14, paddingVertical: 8, marginHorizontal: null }}>Equipment</SmallTitle>
                         <Text style={styles.infoTabText}>{exercise.equipment}</Text>
                     </View>
+                    <View style={styles.infoTab}>
+                        <SmallTitle style={{ fontSize: 14, paddingVertical: 8, marginHorizontal: null }}>How to</SmallTitle>
+                        <Text style={[styles.infoTabText, {borderBottomWidth: 0, borderBottomColor: null}]}>{exercise.instructions}</Text>
+                    </View>
                 </View>
-                <SmallTitle style={{ fontSize: 16, paddingVertical: 8, marginHorizontal: null }}>How to:</SmallTitle>
-                <Text>{exercise.instructions}</Text>
             </View>
         </ScrollView>
     )
@@ -181,25 +171,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    textContainer: {
-        margin: 24
-    },
     infoTabsContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between'
     },
     infoTab: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: circleWidth,
-        height: circleWidth,
-        borderWidth: 2,
-        borderRadius: circleWidth / 2,
-        overflow: 'hidden',
-        marginBottom: '8%'
+        flex: 1,
+        padding: '8%',
+        borderBottomWidth: 2, borderBottomColor: 'black',
     },
     infoTabText: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        paddingVertical: 6,
+        fontWeight: "400"
     },
 })

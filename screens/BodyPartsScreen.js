@@ -1,16 +1,14 @@
-import BodyPartItem from "../components/BodyPartItem";
+import BodyPartItem from "../components/BodyPartsList/BodyPartItem";
 
-import { View, FlatList, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { BODYPARTS } from "../data/Dataset";
-import Container from "../components/Container";
-
+import BodyPartList from "../components/BodyPartsList/BodyPartList";
 
 
 function BodyPartsScreen({ navigation }) {
-    // Funkcja tworzy onPressHandler który przenosi na inny ekran i zwraca komponent z wypełnionymi propsami które pobiera z itemData przekazanego przez FlatList
     function renderBoodyPartItem(itemData) {
-        function itemPressHandler() { // Funkcja nawigująca
+        function itemPressHandler() { 
             if (itemData.item.name === 'Chest' || itemData.item.name === 'Abdominals') {
                 navigation.navigate('Exercises', {
                     bodyPartName: itemData.item.name
@@ -21,12 +19,9 @@ function BodyPartsScreen({ navigation }) {
                 });
             }
         }
-
-        // Usuwanie margina na dole tylko z ostatniego elementu listy
         
-        const isLastItem = itemData.index === BODYPARTS.length - 1; // Sprawdza czy element jest ostatnim elementem wygernerowanym przez listę
-        console.log("BPS: " + isLastItem);
-        const itemStyle = isLastItem ? styles.bodyPartLastItem : styles.bodyPartItem; // Jeśli element jest ostatni to nadaje mu styl dla ostatniego elementu
+        const isLastItem = itemData.index === BODYPARTS.length - 1; 
+        const itemStyle = isLastItem ? styles.bodyPartLastItem : styles.bodyPartItem; 
 
         return (
             <BodyPartItem
@@ -39,14 +34,10 @@ function BodyPartsScreen({ navigation }) {
     };
 
     return (
-        <Container>
-            <FlatList
-                data={BODYPARTS}
-                keyExtractor={(item) => item.id}
-                renderItem={renderBoodyPartItem}
-                numColumns={1}
-            />
-        </Container>
+        <BodyPartList
+            data={BODYPARTS}
+            render={renderBoodyPartItem}
+        />
     );
 }
 

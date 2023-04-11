@@ -1,15 +1,12 @@
-import { FlatList, StyleSheet, View } from "react-native";
-
 import { useLayoutEffect } from "react";
 
 import { BODYPARTS } from "../data/Dataset";
-import BodyPartItem from "../components/BodyPartItem";
-import Container from "../components/Container";
+import BodyPartItem from "../components/BodyPartsList/BodyPartItem";
+import BodyPartList from "../components/BodyPartsList/BodyPartList";
 
 function PartDivisionScreen({ route, navigation }) {
     const bodyPartName = route.params.bodyPartName;
 
-    // Podział na szczegółowe partie wyszukane względem nazwy partii głównej
     const partDivision = BODYPARTS.find((bpItem) => {
         return bpItem.name === bodyPartName;
     });
@@ -27,11 +24,8 @@ function PartDivisionScreen({ route, navigation }) {
             });
         }
 
-        // Usuwanie margina na dole tylko z ostatniego elementu listy
-        const isLastItem = itemData.index === partDivision.division.length - 1; // Sprawdza czy element jest ostatnim elementem wygernerowanym przez listę
-        const itemStyle = isLastItem ? styles.bodyPartLastItem : styles.bodyPartItem; // Jeśli element jest ostatni to nadaje mu styl dla ostatniego elementu
+        const isLastItem = itemData.index === partDivision.division.length - 1;  
 
-        // Jeśli jest mniej niż 3 lub dokłanie 3 elementy do wygenerowania to wysokość elementu = 200 a jeśli, w przeciwnym wypadku element ma height 300 zeby ładnie zapełniało stronę i nie było na dole pustego pola
         const itemHeight = partDivision.division.length > 3 ? 200 : 300;
 
         return (
@@ -51,32 +45,12 @@ function PartDivisionScreen({ route, navigation }) {
     }
 
     return (
-        <Container>
-            <FlatList
-                data={partDivision.division}
-                keyExtractor={(item) => item.id}
-                renderItem={renderBodyPartDivision}
-                numColumns={1}
-            />
-        </Container>
-    )
+        <BodyPartList
+            data={partDivision.division}
+            render={renderBodyPartDivision}        
+        />
+    );
 }
 
 export default PartDivisionScreen;
 
-const styles = StyleSheet.create({
-    bodyPartItem: {
-        flex: 1,
-        marginBottom: 4,
-        height: 200,
-        elevation: 18,
-        overflow: Platform.OS === 'android' ? 'hidden' : 'visible'
-    },
-    bodyPartLastItem: {
-        flex: 1,
-        height: 200,
-        elevation: 18,
-        overflow: Platform.OS === 'android' ? 'hidden' : 'visible'
-    }
-
-})

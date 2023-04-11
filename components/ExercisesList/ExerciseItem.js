@@ -34,8 +34,6 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         borderRadius: 8,
         minHeight: 60,
-        // paddingVertical: 18,
-        // paddingHorizontal: 8,
         margin: 18,
         elevation: 5,
         shadowColor: 'black',
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
     },
-    buttonPressed: { // Naciśnięcie pod iOSa
+    buttonPressed: {
         opacity: 0.5
     },
     innerContainer: {
