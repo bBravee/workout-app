@@ -62,4 +62,9 @@ Raising issues and giving feedback about the app are always welcome!
 ## ScreenShots
 ![Preview Screenshoot1](/screenshots/preview1.png) 
 ![Preview Screenshoot2](/screenshots/preview2.png)
+![Preview Screenshoot](/screenshots/preview3.png)
+![Preview Screenshoot](/screenshots/preview4.png)
+![Preview Screenshoot](/screenshots/preview5.png)
+![Preview Screenshoot](/screenshots/preview6.png)
+![Preview Screenshoot](/screenshots/preview7.png)
 
