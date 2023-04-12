@@ -60,5 +60,6 @@ workout-app utilizes the following API endpoints provided by https://api.api-nin
 Raising issues and giving feedback about the app are always welcome!
 
 ## ScreenShots
-![Preview Screenshoot1](/screenshots/preview1.png) ![Preview Screenshoot2](/screenshots/preview2.png)
+![Preview Screenshoot1](/screenshots/preview1.png) 
+![Preview Screenshoot2](/screenshots/preview2.png)
 
