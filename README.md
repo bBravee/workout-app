@@ -1,5 +1,5 @@
 # React Native Workout App
-MyTrainingApp is a mobile application built with React Native that aims to help people with their training routines. The app allows users to choose a body part they want to train, select from a list of exercises generated based on the chosen body part, filter exercises by difficulty, add exercises to their favorites, and view complete instructions on how to perform the selected exercise.
+My workout-app is a mobile application built with React Native that aims to help people with their training routines. The app allows users to choose a body part they want to train, select from a list of exercises generated based on the chosen body part, filter exercises by difficulty, add exercises to their favorites, and view complete instructions on how to perform the selected exercise.
 
 ## Getting Started
 To get started with workout-app on your computer, follow these steps:
