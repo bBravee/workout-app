@@ -14,10 +14,12 @@ function ExercisesScreen({ route, navigation }) {
     const [data, setData] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
 
+    const apiKey = 'YOUR_API_KEY_HERE';
+
     useEffect(() => {
         axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${bodyPartName}`, {
             headers: {
-                'X-Api-Key': 'API_KEY'
+                'X-Api-Key': apiKey
             }
         })
             .then(response => {

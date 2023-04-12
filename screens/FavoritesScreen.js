@@ -11,6 +11,8 @@ function FavoritesScreen({ navigation }) {
     const favoriteExercisesRdx = useSelector((state) => state.favoriteExercises.names);
     const [favExercises, setFavExercises] = useState([]);
 
+    const apiKey = 'YOUR_API_KEY_HERE';
+
     useEffect(() => {
 
         if (favoriteExercisesRdx.length === 0) {
@@ -23,7 +25,7 @@ function FavoritesScreen({ navigation }) {
         for (const item of favoriteExercisesRdx) {
             axios.get(`https://api.api-ninjas.com/v1/exercises?name=${item}`, {
                 headers: {
-                    'X-Api-Key': 'API_KEY'
+                    'X-Api-Key': apiKey
                 }
             })
                 .then(response => {
