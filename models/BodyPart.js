@@ -1,5 +1,3 @@
-// Klasa reprezentująca części ciała jako kategorie na ekranie głównym
-
 class BodyPart {
     constructor(id, name, imageUrl, division) {
         this.id = id;
