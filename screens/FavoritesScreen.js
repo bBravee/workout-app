@@ -22,8 +22,8 @@ function FavoritesScreen({ navigation }) {
         const newData = [];
         let numResponsesReceived = 0;
 
-        for (const item of favoriteExercisesRdx) {
-            axios.get(`https://api.api-ninjas.com/v1/exercises?name=${item}`, {
+        for (const exerciseName of favoriteExercisesRdx) {
+            axios.get(`https://api.api-ninjas.com/v1/exercises?name=${exerciseName}`, {
                 headers: {
                     'X-Api-Key': apiKey
                 }
